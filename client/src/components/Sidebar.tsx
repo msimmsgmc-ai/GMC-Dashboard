@@ -24,23 +24,32 @@ export default function Sidebar({ activeQuarter, onQuarterChange, availableQuart
   return (
     <aside className="sidebar w-56 flex flex-col h-screen overflow-y-auto overscroll-contain shrink-0">
       {/* Logo */}
-      <div className="px-5 py-5 border-b border-[hsl(var(--sidebar-border))]">
-        <div className="flex items-center gap-2.5">
-          {/* SVG Logo — minimal building mark */}
+      <div className="px-4 py-4 border-b border-[hsl(var(--sidebar-border))]">
+        <div className="flex items-center gap-3">
+          {/* GMC Properties logo mark — house on road in circular frame */}
           <svg
-            aria-label="Portfolio Dashboard"
-            viewBox="0 0 32 32"
+            aria-label="GMC Properties"
+            viewBox="0 0 44 44"
             fill="none"
-            className="w-7 h-7 shrink-0"
+            className="w-9 h-9 shrink-0"
           >
-            <rect x="2" y="18" width="6" height="12" fill="hsl(var(--sidebar-accent))" rx="1" />
-            <rect x="10" y="10" width="6" height="20" fill="hsl(var(--sidebar-accent))" opacity="0.8" rx="1" />
-            <rect x="18" y="14" width="6" height="16" fill="hsl(var(--sidebar-accent))" opacity="0.6" rx="1" />
-            <rect x="26" y="6" width="4" height="24" fill="hsl(var(--sidebar-accent))" opacity="0.4" rx="1" />
+            {/* Outer circle — navy */}
+            <circle cx="22" cy="22" r="21" fill="#091426" />
+            {/* Inner circle — teal dome */}
+            <circle cx="22" cy="20" r="14" fill="#417780" />
+            {/* Road / path — olive green */}
+            <path d="M14 34 Q18 26 22 24 Q26 26 30 34 Q26 32 22 32 Q18 32 14 34Z" fill="#a4b259" />
+            {/* House shape — white */}
+            <polygon points="22,10 15,17 15,24 29,24 29,17" fill="white" opacity="0.92" />
+            {/* Door */}
+            <rect x="20" y="19" width="4" height="5" fill="#417780" rx="0.5" />
+            {/* Roof ridge line */}
+            <polyline points="14,17 22,10 30,17" fill="none" stroke="white" strokeWidth="1.2" opacity="0.6" />
           </svg>
           <div>
-            <div className="text-[11px] font-semibold tracking-widest uppercase text-[hsl(var(--sidebar-accent))]">Portfolio</div>
-            <div className="text-[13px] font-semibold text-[hsl(var(--sidebar-fg))] leading-tight">Performance</div>
+            <div className="text-[15px] font-bold tracking-wide text-white leading-tight">GMC</div>
+            <div className="text-[10px] font-semibold tracking-widest uppercase text-[hsl(var(--sidebar-accent))] leading-tight">Properties</div>
+            <div className="text-[9px] text-[hsl(var(--sidebar-muted))] leading-tight mt-0.5">Performance Dashboard</div>
           </div>
         </div>
       </div>
