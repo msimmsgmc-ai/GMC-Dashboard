@@ -261,13 +261,95 @@ export const findings: Finding[] = [
   },
 ];
 
+// ── FINANCIALS (Budget vs Actual) ────────────────────────────────────────────
+// Updated from Income Statement - Budget vs Actual, Q1 2026 (Jan-Mar)
+// Jordan Station = East + West combined
+
+export interface FinancialLine {
+  label: string;
+  actual: number;
+  budget: number;
+}
+
+export interface PropertyFinancials {
+  propertyId: string;
+  year: number;
+  quarter: string;
+  periodLabel: string;
+  lines: FinancialLine[];
+}
+
+export const financials: PropertyFinancials[] = [
+  {
+    propertyId: "jordan_station", year: 2026, quarter: "Q1",
+    periodLabel: "Jan – Mar 2026",
+    lines: [
+      { label: "Total Income",        actual: 2486365.76, budget: 2539935.50 },
+      { label: "Personnel",           actual:  208563.02, budget:  218673.00 },
+      { label: "Repair & Maintenance", actual:   35190.51, budget:   35831.00 },
+      { label: "Outside Service",      actual:   78091.14, budget:   80819.00 },
+      { label: "NOI",                  actual: 1467410.07, budget: 1516772.50 },
+      { label: "CapEx",                actual:   95055.81, budget:   85327.50 },
+    ],
+  },
+  {
+    propertyId: "oakleaf", year: 2026, quarter: "Q1",
+    periodLabel: "Jan – Mar 2026",
+    lines: [
+      { label: "Total Income",        actual: 1451737.51, budget: 1451081.00 },
+      { label: "Personnel",           actual:  142284.36, budget:  154361.00 },
+      { label: "Repair & Maintenance", actual:   29497.81, budget:   32127.00 },
+      { label: "Outside Service",      actual:   56879.68, budget:   77221.00 },
+      { label: "NOI",                  actual:  734562.57, budget:  681981.00 },
+      { label: "CapEx",                actual:  205593.35, budget:  226382.00 },
+    ],
+  },
+  {
+    propertyId: "oakview", year: 2026, quarter: "Q1",
+    periodLabel: "Jan – Mar 2026",
+    lines: [
+      { label: "Total Income",        actual:  750759.01, budget:  882708.00 },
+      { label: "Personnel",           actual:   88015.86, budget:   78834.00 },
+      { label: "Repair & Maintenance", actual:   20103.90, budget:   19630.00 },
+      { label: "Outside Service",      actual:   80830.95, budget:   53221.00 },
+      { label: "NOI",                  actual:  274565.70, budget:  447842.00 },
+      { label: "CapEx",                actual:   56201.79, budget:   44470.00 },
+    ],
+  },
+  {
+    propertyId: "pier5350", year: 2026, quarter: "Q1",
+    periodLabel: "Jan – Mar 2026",
+    lines: [
+      { label: "Total Income",        actual: 1456089.94, budget: 1534544.00 },
+      { label: "Personnel",           actual:  147689.86, budget:  183916.00 },
+      { label: "Repair & Maintenance", actual:   30567.11, budget:   31663.00 },
+      { label: "Outside Service",      actual:   78972.09, budget:   98345.00 },
+      { label: "NOI",                  actual:  826402.29, budget:  668288.00 },
+      { label: "CapEx",                actual:  145685.16, budget:   60430.00 },
+    ],
+  },
+  {
+    propertyId: "hendricks", year: 2026, quarter: "Q1",
+    periodLabel: "Jan – Mar 2026",
+    lines: [
+      { label: "Total Income",        actual:  717667.13, budget:  724704.00 },
+      { label: "Personnel",           actual:   66688.49, budget:   74866.00 },
+      { label: "Repair & Maintenance", actual:    6225.42, budget:    6189.00 },
+      { label: "Outside Service",      actual:   22907.90, budget:   24288.00 },
+      { label: "NOI",                  actual:  356411.68, budget:  375824.00 },
+      { label: "CapEx",                actual:    7900.98, budget:    6762.00 },
+    ],
+  },
+];
+
 // Helper: get data for a specific property + quarter
 export function getDashboardData(year: number, quarter: string) {
   return properties.map((prop) => {
     const target = targets2026.find((t) => t.propertyId === prop.id && t.year === year && t.quarter === quarter) ?? null;
     const actual = actuals.find((a) => a.propertyId === prop.id && a.year === year && a.quarter === quarter) ?? null;
     const finding = findings.find((f) => f.propertyId === prop.id && f.year === year && f.quarter === quarter);
-    return { property: prop, target, actual, findings: finding?.bullets ?? [] };
+    const fins = financials.find((f) => f.propertyId === prop.id && f.year === year && f.quarter === quarter) ?? null;
+    return { property: prop, target, actual, findings: finding?.bullets ?? [], financials: fins };
   });
 }
 
