@@ -267,77 +267,81 @@ export const findings: Finding[] = [
 
 export interface FinancialLine {
   label: string;
-  actual: number;
-  budget: number;
+  monthActual: number;
+  monthBudget: number;
+  ytdActual: number;
+  ytdBudget: number;
 }
 
 export interface PropertyFinancials {
   propertyId: string;
   year: number;
   quarter: string;
-  periodLabel: string;
+  monthLabel: string;   // e.g. "Mar 2026"
+  ytdLabel: string;     // e.g. "Jan – Mar 2026"
   lines: FinancialLine[];
 }
 
 export const financials: PropertyFinancials[] = [
   {
+    // Jordan Station I+II = East + West combined
     propertyId: "jordan_station", year: 2026, quarter: "Q1",
-    periodLabel: "Jan – Mar 2026",
+    monthLabel: "Mar 2026", ytdLabel: "Jan – Mar 2026",
     lines: [
-      { label: "Total Income",        actual: 2486365.76, budget: 2539935.50 },
-      { label: "Personnel",           actual:  208563.02, budget:  218673.00 },
-      { label: "Repair & Maintenance", actual:   35190.51, budget:   35831.00 },
-      { label: "Outside Service",      actual:   78091.14, budget:   80819.00 },
-      { label: "NOI",                  actual: 1467410.07, budget: 1516772.50 },
-      { label: "CapEx",                actual:   95055.81, budget:   85327.50 },
+      { label: "Total Income",        monthActual: 830975.34, monthBudget: 877119.00, ytdActual: 2486365.76, ytdBudget: 2539935.50 },
+      { label: "Personnel",           monthActual:  62290.17, monthBudget:  82625.00, ytdActual:  208563.02, ytdBudget:  218673.00 },
+      { label: "Repair & Maintenance", monthActual:  10615.82, monthBudget:  11798.00, ytdActual:   35190.51, ytdBudget:   35831.00 },
+      { label: "Outside Service",      monthActual:  29574.60, monthBudget:  24430.00, ytdActual:   78091.14, ytdBudget:   80819.00 },
+      { label: "NOI",                  monthActual: 493191.70, monthBudget: 529697.00, ytdActual: 1467410.07, ytdBudget: 1516772.50 },
+      { label: "CapEx",                monthActual:  13262.20, monthBudget:   5527.50, ytdActual:   95055.81, ytdBudget:   85327.50 },
     ],
   },
   {
     propertyId: "oakleaf", year: 2026, quarter: "Q1",
-    periodLabel: "Jan – Mar 2026",
+    monthLabel: "Mar 2026", ytdLabel: "Jan – Mar 2026",
     lines: [
-      { label: "Total Income",        actual: 1451737.51, budget: 1451081.00 },
-      { label: "Personnel",           actual:  142284.36, budget:  154361.00 },
-      { label: "Repair & Maintenance", actual:   29497.81, budget:   32127.00 },
-      { label: "Outside Service",      actual:   56879.68, budget:   77221.00 },
-      { label: "NOI",                  actual:  734562.57, budget:  681981.00 },
-      { label: "CapEx",                actual:  205593.35, budget:  226382.00 },
+      { label: "Total Income",        monthActual: 447072.73, monthBudget: 504165.00, ytdActual: 1451737.51, ytdBudget: 1451081.00 },
+      { label: "Personnel",           monthActual:  44695.11, monthBudget:  63603.00, ytdActual:  142284.36, ytdBudget:  154361.00 },
+      { label: "Repair & Maintenance", monthActual:   8190.29, monthBudget:  10513.00, ytdActual:   29497.81, ytdBudget:   32127.00 },
+      { label: "Outside Service",      monthActual:  19420.32, monthBudget:  24441.00, ytdActual:   56879.68, ytdBudget:   77221.00 },
+      { label: "NOI",                  monthActual: 217383.90, monthBudget: 237958.00, ytdActual:  734562.57, ytdBudget:  681981.00 },
+      { label: "CapEx",                monthActual:  60292.28, monthBudget:  79478.00, ytdActual:  205593.35, ytdBudget:  226382.00 },
     ],
   },
   {
     propertyId: "oakview", year: 2026, quarter: "Q1",
-    periodLabel: "Jan – Mar 2026",
+    monthLabel: "Mar 2026", ytdLabel: "Jan – Mar 2026",
     lines: [
-      { label: "Total Income",        actual:  750759.01, budget:  882708.00 },
-      { label: "Personnel",           actual:   88015.86, budget:   78834.00 },
-      { label: "Repair & Maintenance", actual:   20103.90, budget:   19630.00 },
-      { label: "Outside Service",      actual:   80830.95, budget:   53221.00 },
-      { label: "NOI",                  actual:  274565.70, budget:  447842.00 },
-      { label: "CapEx",                actual:   56201.79, budget:   44470.00 },
+      { label: "Total Income",        monthActual: 242283.23, monthBudget: 369166.00, ytdActual:  750759.01, ytdBudget:  882708.00 },
+      { label: "Personnel",           monthActual:  24024.63, monthBudget:  33122.00, ytdActual:   88015.86, ytdBudget:   78834.00 },
+      { label: "Repair & Maintenance", monthActual:  11833.52, monthBudget:   6770.00, ytdActual:   20103.90, ytdBudget:   19630.00 },
+      { label: "Outside Service",      monthActual:  32228.66, monthBudget:  19690.00, ytdActual:   80830.95, ytdBudget:   53221.00 },
+      { label: "NOI",                  monthActual:  77868.53, monthBudget: 215190.00, ytdActual:  274565.70, ytdBudget:  447842.00 },
+      { label: "CapEx",                monthActual:   2427.94, monthBudget:  15790.00, ytdActual:   56201.79, ytdBudget:   44470.00 },
     ],
   },
   {
     propertyId: "pier5350", year: 2026, quarter: "Q1",
-    periodLabel: "Jan – Mar 2026",
+    monthLabel: "Mar 2026", ytdLabel: "Jan – Mar 2026",
     lines: [
-      { label: "Total Income",        actual: 1456089.94, budget: 1534544.00 },
-      { label: "Personnel",           actual:  147689.86, budget:  183916.00 },
-      { label: "Repair & Maintenance", actual:   30567.11, budget:   31663.00 },
-      { label: "Outside Service",      actual:   78972.09, budget:   98345.00 },
-      { label: "NOI",                  actual:  826402.29, budget:  668288.00 },
-      { label: "CapEx",                actual:  145685.16, budget:   60430.00 },
+      { label: "Total Income",        monthActual: 488403.47, monthBudget: 513550.00, ytdActual: 1456089.94, ytdBudget: 1534544.00 },
+      { label: "Personnel",           monthActual:  54883.61, monthBudget:  76550.00, ytdActual:  147689.86, ytdBudget:  183916.00 },
+      { label: "Repair & Maintenance", monthActual:  16866.55, monthBudget:  10271.00, ytdActual:   30567.11, ytdBudget:   31663.00 },
+      { label: "Outside Service",      monthActual:  39319.43, monthBudget:  31895.00, ytdActual:   78972.09, ytdBudget:   98345.00 },
+      { label: "NOI",                  monthActual: 185841.12, monthBudget: 198792.00, ytdActual:  826402.29, ytdBudget:  668288.00 },
+      { label: "CapEx",                monthActual:  59088.19, monthBudget:  22810.00, ytdActual:  145685.16, ytdBudget:   60430.00 },
     ],
   },
   {
     propertyId: "hendricks", year: 2026, quarter: "Q1",
-    periodLabel: "Jan – Mar 2026",
+    monthLabel: "Mar 2026", ytdLabel: "Jan – Mar 2026",
     lines: [
-      { label: "Total Income",        actual:  717667.13, budget:  724704.00 },
-      { label: "Personnel",           actual:   66688.49, budget:   74866.00 },
-      { label: "Repair & Maintenance", actual:    6225.42, budget:    6189.00 },
-      { label: "Outside Service",      actual:   22907.90, budget:   24288.00 },
-      { label: "NOI",                  actual:  356411.68, budget:  375824.00 },
-      { label: "CapEx",                actual:    7900.98, budget:    6762.00 },
+      { label: "Total Income",        monthActual: 242875.76, monthBudget: 244789.00, ytdActual:  717667.13, ytdBudget:  724704.00 },
+      { label: "Personnel",           monthActual:  24314.80, monthBudget:  31402.00, ytdActual:   66688.49, ytdBudget:   74866.00 },
+      { label: "Repair & Maintenance", monthActual:   2460.31, monthBudget:   2082.00, ytdActual:    6225.42, ytdBudget:    6189.00 },
+      { label: "Outside Service",      monthActual:   6670.76, monthBudget:   9644.00, ytdActual:   22907.90, ytdBudget:   24288.00 },
+      { label: "NOI",                  monthActual: 130960.68, monthBudget: 121763.00, ytdActual:  356411.68, ytdBudget:  375824.00 },
+      { label: "CapEx",                monthActual:   1481.10, monthBudget:   2256.00, ytdActual:    7900.98, ytdBudget:    6762.00 },
     ],
   },
 ];

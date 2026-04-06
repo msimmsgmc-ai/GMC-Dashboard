@@ -225,37 +225,61 @@ function FindingsCard({ findings, propertyName, quarter }: { findings: string[];
 }
 
 function FinancialsTable({ financials, quarter }: { financials: PropertyFinancials; quarter: Quarter }) {
-  const fmtDollar = (v: number) => {
+  const fmtD = (v: number) => {
     if (Math.abs(v) >= 1_000_000) return "$" + (v / 1_000_000).toFixed(2) + "M";
     if (Math.abs(v) >= 1_000) return "$" + (v / 1_000).toFixed(1) + "K";
     return "$" + v.toFixed(0);
+  };
+
+  const VarCell = ({ actual, budget, isIncomeRow }: { actual: number; budget: number; isIncomeRow: boolean }) => {
+    const variance = actual - budget;
+    const pctVar = budget !== 0 ? variance / budget : 0;
+    const isGood = isIncomeRow ? variance >= 0 : variance <= 0;
+    return (
+      <td className={`py-2.5 px-2 text-right tabular-nums text-xs font-medium ${
+        isGood ? "text-green-700 dark:text-green-400" : "text-red-600 dark:text-red-400"
+      }`}>
+        {variance >= 0 ? "+" : ""}{fmtD(variance)}
+        <div className="text-[10px] text-muted-foreground font-normal">
+          {(pctVar * 100).toFixed(1)}%
+        </div>
+      </td>
+    );
   };
 
   return (
     <div className="bg-card border border-border rounded-xl overflow-hidden">
       <div className="px-5 py-3 border-b border-border bg-muted/30">
         <h2 className="text-sm font-semibold">Financials — Budget vs. Actual</h2>
-        <p className="text-xs text-muted-foreground mt-0.5">{financials.periodLabel} · {quarter} 2026</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{quarter} 2026</p>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-border text-xs text-muted-foreground bg-muted/20">
-              <th className="text-left py-2.5 pl-4 pr-2 font-semibold w-48">Category</th>
-              <th className="text-right py-2.5 px-3 font-semibold w-28">Actual</th>
-              <th className="text-right py-2.5 px-3 font-semibold w-28">Budget</th>
-              <th className="text-right py-2.5 px-3 font-semibold w-28">Variance</th>
-              <th className="py-2.5 px-3 w-40">vs. Budget</th>
+            {/* Group headers */}
+            <tr className="border-b border-border bg-muted/30">
+              <th className="py-2 pl-4" />
+              <th colSpan={3} className="py-2 px-2 text-center text-[11px] font-bold uppercase tracking-wider text-foreground border-l border-border/50">
+                {financials.monthLabel}
+              </th>
+              <th colSpan={3} className="py-2 px-2 text-center text-[11px] font-bold uppercase tracking-wider text-foreground border-l border-border/50">
+                YTD ({financials.ytdLabel})
+              </th>
+            </tr>
+            {/* Column headers */}
+            <tr className="border-b border-border text-[11px] text-muted-foreground bg-muted/20">
+              <th className="text-left py-2 pl-4 pr-2 font-semibold w-44">Category</th>
+              <th className="text-right py-2 px-2 font-semibold w-24 border-l border-border/50">Actual</th>
+              <th className="text-right py-2 px-2 font-semibold w-24">Budget</th>
+              <th className="text-right py-2 px-2 font-semibold w-24">Variance</th>
+              <th className="text-right py-2 px-2 font-semibold w-24 border-l border-border/50">Actual</th>
+              <th className="text-right py-2 px-2 font-semibold w-24">Budget</th>
+              <th className="text-right py-2 px-2 font-semibold w-24">Variance</th>
             </tr>
           </thead>
           <tbody>
             {financials.lines.map((line) => {
-              const variance = line.actual - line.budget;
-              const pctVar = line.budget !== 0 ? variance / line.budget : 0;
-              // For income/NOI: positive variance is good. For expenses/CapEx: negative variance (under budget) is good.
               const isIncomeRow = line.label === "Total Income" || line.label === "NOI";
-              const isGood = isIncomeRow ? variance >= 0 : variance <= 0;
-              const barPct = Math.min(Math.abs(pctVar) * 100 * 5, 100); // Scale: 20% variance = full bar
               const isHighlight = line.label === "NOI";
 
               return (
@@ -268,30 +292,22 @@ function FinancialsTable({ financials, quarter }: { financials: PropertyFinancia
                   <td className={`py-2.5 pl-4 pr-2 text-sm ${isHighlight ? "font-bold" : "font-medium"} text-foreground`}>
                     {line.label}
                   </td>
-                  <td className="py-2.5 px-3 text-right tabular-nums text-sm font-semibold">
-                    {fmtDollar(line.actual)}
+                  {/* Month */}
+                  <td className="py-2.5 px-2 text-right tabular-nums text-xs font-semibold border-l border-border/50">
+                    {fmtD(line.monthActual)}
                   </td>
-                  <td className="py-2.5 px-3 text-right tabular-nums text-sm text-muted-foreground">
-                    {fmtDollar(line.budget)}
+                  <td className="py-2.5 px-2 text-right tabular-nums text-xs text-muted-foreground">
+                    {fmtD(line.monthBudget)}
                   </td>
-                  <td className={`py-2.5 px-3 text-right tabular-nums text-sm font-medium ${
-                    isGood ? "text-green-700 dark:text-green-400" : "text-red-600 dark:text-red-400"
-                  }`}>
-                    {variance >= 0 ? "+" : ""}{fmtDollar(variance)}
-                    <div className="text-[10px] text-muted-foreground font-normal">
-                      {(pctVar * 100).toFixed(1)}%
-                    </div>
+                  <VarCell actual={line.monthActual} budget={line.monthBudget} isIncomeRow={isIncomeRow} />
+                  {/* YTD */}
+                  <td className="py-2.5 px-2 text-right tabular-nums text-xs font-semibold border-l border-border/50">
+                    {fmtD(line.ytdActual)}
                   </td>
-                  <td className="py-2.5 px-3">
-                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all duration-500 ${
-                          isGood ? "bg-green-500" : "bg-red-500"
-                        }`}
-                        style={{ width: `${barPct}%` }}
-                      />
-                    </div>
+                  <td className="py-2.5 px-2 text-right tabular-nums text-xs text-muted-foreground">
+                    {fmtD(line.ytdBudget)}
                   </td>
+                  <VarCell actual={line.ytdActual} budget={line.ytdBudget} isIncomeRow={isIncomeRow} />
                 </tr>
               );
             })}
