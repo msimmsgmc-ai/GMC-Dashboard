@@ -133,8 +133,64 @@ export const targets2026: Target[] = [
   },
 ];
 
-// Q2 2026 targets (same structure — will be populated when Q2 data arrives)
-// To add Q2 targets, push to this array with quarter: "Q2"
+// Q2 2026 targets — same quarterly cadence as Q1 (year target divided by 4)
+targets2026.push(
+  {
+    propertyId: "jordan_station", year: 2026, quarter: "Q2",
+    occupancyQTarget: 0.91, occupancyYearTarget: 0.94,
+    totalLeadsQTarget: 709, totalLeadsYearTarget: 2835,
+    moveInsQTarget: 60, moveInsYearTarget: 241,
+    moveOutsQTarget: 54, moveOutsYearTarget: 214,
+    tourRateQTarget: 0.22, tourRateYearTarget: 0.282,
+    ltmiQTarget: 0.085, ltmiYearTarget: 0.085,
+    notReadyQTarget: 20, notReadyYearTarget: 19,
+    denialRateQTarget: 0.10, denialRateYearTarget: 0.10,
+  },
+  {
+    propertyId: "oakleaf", year: 2026, quarter: "Q2",
+    occupancyQTarget: 0.91, occupancyYearTarget: 0.94,
+    totalLeadsQTarget: 464, totalLeadsYearTarget: 1858,
+    moveInsQTarget: 40, moveInsYearTarget: 158,
+    moveOutsQTarget: 35, moveOutsYearTarget: 142,
+    tourRateQTarget: 0.175, tourRateYearTarget: 0.185,
+    ltmiQTarget: 0.085, ltmiYearTarget: 0.085,
+    notReadyQTarget: 14, notReadyYearTarget: 12,
+    denialRateQTarget: 0.22, denialRateYearTarget: 0.20,
+  },
+  {
+    propertyId: "oakview", year: 2026, quarter: "Q2",
+    occupancyQTarget: 0.89, occupancyYearTarget: 0.94,
+    totalLeadsQTarget: 303, totalLeadsYearTarget: 1211,
+    moveInsQTarget: 26, moveInsYearTarget: 103,
+    moveOutsQTarget: 22, moveOutsYearTarget: 86,
+    tourRateQTarget: 0.17, tourRateYearTarget: 0.201,
+    ltmiQTarget: 0.085, ltmiYearTarget: 0.085,
+    notReadyQTarget: 12, notReadyYearTarget: 8,
+    denialRateQTarget: 0.33, denialRateYearTarget: 0.33,
+  },
+  {
+    propertyId: "pier5350", year: 2026, quarter: "Q2",
+    occupancyQTarget: 0.91, occupancyYearTarget: 0.94,
+    totalLeadsQTarget: 512, totalLeadsYearTarget: 2047,
+    moveInsQTarget: 44, moveInsYearTarget: 174,
+    moveOutsQTarget: 40, moveOutsYearTarget: 159,
+    tourRateQTarget: 0.22, tourRateYearTarget: 0.243,
+    ltmiQTarget: 0.085, ltmiYearTarget: 0.085,
+    notReadyQTarget: 17, notReadyYearTarget: 14,
+    denialRateQTarget: 0.16, denialRateYearTarget: 0.15,
+  },
+  {
+    propertyId: "hendricks", year: 2026, quarter: "Q2",
+    occupancyQTarget: 0.93, occupancyYearTarget: 0.94,
+    totalLeadsQTarget: 150, totalLeadsYearTarget: 600,
+    moveInsQTarget: 13, moveInsYearTarget: 51,
+    moveOutsQTarget: 13, moveOutsYearTarget: 53,
+    tourRateQTarget: 0.399, tourRateYearTarget: 0.399,
+    ltmiQTarget: 0.085, ltmiYearTarget: 0.085,
+    notReadyQTarget: 5, notReadyYearTarget: 5,
+    denialRateQTarget: 0.10, denialRateYearTarget: 0.10,
+  },
+);
 
 export const actuals: Actual[] = [
   // ── Q1 2026 ──────────────────────────────────────────────────
@@ -209,9 +265,73 @@ export const actuals: Actual[] = [
     rentableUnits: 132, occupiedUnits: 124, vacantUnits: 8,
   },
 
-  // ── Q2 2026 placeholder ───────────────────────────────────────
-  // Uncomment and fill in when you send the Q2 Box Score
-  // { propertyId: "jordan_station", year: 2026, quarter: "Q2", periodLabel: "04/01/2026 – 06/30/2026", ... }
+  // ── Q2 2026 (partial: April – May, 2 of 3 months) ──────────────────
+  // Jordan Station = East (300 rentable) + West (236 rentable) combined
+  {
+    propertyId: "jordan_station", year: 2026, quarter: "Q2",
+    periodLabel: "04/01/2026 – 05/31/2026 · partial (2 of 3 months)",
+    occupancy: 0.9310, occupancyStart: null,
+    totalLeadsStart: 3518, moveInsStart: 185, moveOutsStart: 243,
+    tourRateStart: 0.155, ltmiStart: 0.053,
+    notReadyStart: 35, denialRateStart: null,
+    totalLeads: 589, totalTours: 82,
+    moveIns: 70, moveOuts: 44, evictions: null,
+    tourRate: 0.139, ltmi: 0.119,
+    notReady: 25, denialRate: 0.042,
+    rentableUnits: 536, occupiedUnits: 499, vacantUnits: 37,
+  },
+  {
+    propertyId: "oakleaf", year: 2026, quarter: "Q2",
+    periodLabel: "04/01/2026 – 05/31/2026 · partial (2 of 3 months)",
+    occupancy: 0.8842, occupancyStart: null,
+    totalLeadsStart: 1183, moveInsStart: 101, moveOutsStart: 134,
+    tourRateStart: 0.149, ltmiStart: 0.085,
+    notReadyStart: 20, denialRateStart: 0.29,
+    totalLeads: 260, totalTours: 38,
+    moveIns: 31, moveOuts: 26, evictions: null,
+    tourRate: 0.146, ltmi: 0.119,
+    notReady: 14, denialRate: 0.209,
+    rentableUnits: 354, occupiedUnits: 313, vacantUnits: 41,
+  },
+  {
+    propertyId: "oakview", year: 2026, quarter: "Q2",
+    periodLabel: "04/01/2026 – 05/31/2026 · partial (2 of 3 months)",
+    occupancy: 0.8419, occupancyStart: 0.833,
+    totalLeadsStart: 2200, moveInsStart: 116, moveOutsStart: 129,
+    tourRateStart: 0.101, ltmiStart: 0.05,
+    notReadyStart: 26, denialRateStart: 0.33,
+    totalLeads: 225, totalTours: 30,
+    moveIns: 23, moveOuts: 18, evictions: null,
+    tourRate: 0.133, ltmi: 0.102,
+    notReady: 19, denialRate: 0.323,
+    rentableUnits: 215, occupiedUnits: 181, vacantUnits: 34,
+  },
+  {
+    propertyId: "pier5350", year: 2026, quarter: "Q2",
+    periodLabel: "04/01/2026 – 05/31/2026 · partial (2 of 3 months)",
+    occupancy: 0.8342, occupancyStart: null,
+    totalLeadsStart: null, moveInsStart: null, moveOutsStart: null,
+    tourRateStart: null, ltmiStart: null,
+    notReadyStart: 26, denialRateStart: null,
+    totalLeads: 832, totalTours: 66,
+    moveIns: 16, moveOuts: 31, evictions: null,
+    tourRate: 0.079, ltmi: 0.019,
+    notReady: 23, denialRate: 0.093,
+    rentableUnits: 398, occupiedUnits: 332, vacantUnits: 66,
+  },
+  {
+    propertyId: "hendricks", year: 2026, quarter: "Q2",
+    periodLabel: "04/01/2026 – 05/31/2026 · partial (2 of 3 months)",
+    occupancy: 0.8939, occupancyStart: null,
+    totalLeadsStart: 536, moveInsStart: 67, moveOutsStart: 74,
+    tourRateStart: 0.534, ltmiStart: 0.125,
+    notReadyStart: 6, denialRateStart: 0.04,
+    totalLeads: 112, totalTours: 27,
+    moveIns: 6, moveOuts: 12, evictions: null,
+    tourRate: 0.241, ltmi: 0.054,
+    notReady: 7, denialRate: 0.062,
+    rentableUnits: 132, occupiedUnits: 118, vacantUnits: 14,
+  },
 ];
 
 export const findings: Finding[] = [

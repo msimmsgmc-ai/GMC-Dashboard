@@ -80,8 +80,11 @@ export default function Sidebar({ activeQuarter, onQuarterChange, availableQuart
               {!hasData && (
                 <span className="text-[10px] text-[hsl(var(--sidebar-muted))]">Pending</span>
               )}
-              {q === "Q1" && (
+              {q === "Q1" && hasData && (
                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-[hsl(var(--sidebar-accent))/0.2] text-[hsl(var(--sidebar-accent))]">Live</span>
+              )}
+              {q === "Q2" && hasData && (
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[hsl(var(--sidebar-accent))/0.2] text-[hsl(var(--sidebar-accent))]">Partial</span>
               )}
             </button>
           );
